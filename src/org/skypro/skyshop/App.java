@@ -1,5 +1,6 @@
 package org.skypro.skyshop;
 
+hm-1
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.Product;
 
@@ -32,5 +33,8 @@ public class App {
         System.out.println(findProduct1);
 
 
+public class App {
+    public static void main(String[] args) {
+ master
     }
 }
