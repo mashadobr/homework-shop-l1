@@ -31,16 +31,30 @@ public class ProductBasket {
         return basketCost;
     }
 
+    public double countSpecialProducts() {
+        int counterSpecialProducts = 0;
+        for (int i = 0; i < counter; ++i) {
+            Product product = products[i];
+            if (products[i].IsSpecial()) {
+                counterSpecialProducts++;
+            }
+        }
+        return counterSpecialProducts;
+
+    }
+
     public void printBasket() {
         if (counter == 0) {
             System.out.println("в корзине пусто");
         }
         for (int i = 0; i < counter; ++i) {
             Product product = products[i];
-            System.out.println(product.getName() + ":" + product.getPrice());
+            System.out.println(products[i]);
         }
         double totalCost = countBasketCost();
         System.out.println("Итого: " + totalCost);
+        System.out.println("Специальных товаров: " + countSpecialProducts());
+
     }
 
     public boolean checkProductInBasket(String nameProduct) {
