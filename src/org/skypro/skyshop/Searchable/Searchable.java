@@ -1,9 +1,9 @@
 package org.skypro.skyshop.Searchable;
 
 public interface Searchable {
-    String searchTerm();
+    String getSearchTerm();
     String getContentType();
     default String getStringRepresentation(){
-        return "имя объекта " + searchTerm() + ", тип объекта: " +  getContentType();
+        return "имя объекта " + getSearchTerm() + ", тип объекта: " +  getContentType();
     }
 }

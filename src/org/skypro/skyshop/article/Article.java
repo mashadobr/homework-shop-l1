@@ -1,14 +1,22 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.article;
 
 import org.skypro.skyshop.Searchable.Searchable;
 
 public class Article implements Searchable {
-    public final String titleArticle;
-    public final String contentArticle;
+    private final String titleArticle;
+    private final String contentArticle;
 
     public Article(String titleAtricle, String contentArticle) {
         this.titleArticle = titleAtricle;
         this.contentArticle = contentArticle;
+    }
+
+    public String getTitleArticle() {
+        return titleArticle;
+    }
+
+    public String getContentArticle() {
+        return contentArticle;
     }
 
     @Override
@@ -18,7 +26,7 @@ public class Article implements Searchable {
 
 
     @Override
-    public String searchTerm() {
+    public String getSearchTerm() {
         return toString();
     }
 

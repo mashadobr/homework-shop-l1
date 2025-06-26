@@ -17,7 +17,7 @@ public class SearchEngine {
             if (counter == 5) {
                 break;
             }
-            if (searchable.searchTerm().contains(text)){
+            if (searchable.getSearchTerm().contains(text)){
                 resultSearch[counter] = searchable;
                 counter++;
             }

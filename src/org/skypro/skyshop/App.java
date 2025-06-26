@@ -2,10 +2,9 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.Searchable.SearchEngine;
 import org.skypro.skyshop.Searchable.Searchable;
+import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
-
-import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
