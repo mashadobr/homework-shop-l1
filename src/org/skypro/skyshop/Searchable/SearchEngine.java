@@ -17,7 +17,7 @@ public class SearchEngine {
             if (counter == 5) {
                 break;
             }
-            if (searchable.getSearchTerm().contains(text)){
+            if (searchable.getSearchTerm().contains(text)) {
                 resultSearch[counter] = searchable;
                 counter++;
             }
@@ -39,7 +39,8 @@ public class SearchEngine {
             System.out.println(searchable.getStringRepresentation());
         }
     }
-    public void printResult (Searchable[] resultSearcheble){
+
+    public void printResult(Searchable[] resultSearcheble) {
         System.out.println("Результаты поиска");
         for (Searchable result : resultSearcheble) {
             if (result == null) {
@@ -49,4 +50,40 @@ public class SearchEngine {
             }
         }
     }
+
+    public int getNumberMatches(String searchWord, String str) {
+
+        int numb = 0;
+        int index = 0;
+        int foundIndex = str.indexOf(searchWord, index);
+
+        while (foundIndex != -1) {
+            numb++;
+            index = foundIndex + str.length();
+            foundIndex = str.indexOf(searchWord, index);
+        }
+        return numb;
     }
+
+    public String getBestResult(String search) throws BestResultNotFound {
+        Searchable bestResult = null;
+        int maxMach = 0;
+        int numb;
+        for (Searchable item : searchables) {
+            String str = item.getSearchTerm().toLowerCase();
+            String searchWord = search.toLowerCase();
+            numb = getNumberMatches(searchWord, str);
+            if (numb > maxMach) {
+                maxMach = numb;
+                bestResult = item;
+            }
+        }
+        if (bestResult == null) {
+            throw new BestResultNotFound();
+        }
+        return bestResult.getStringRepresentation();
+    }
+}
+
+
+
