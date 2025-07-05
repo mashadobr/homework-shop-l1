@@ -6,6 +6,10 @@ public abstract class Product implements Searchable {
     private final String name;
 
     public Product(String name) {
+
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Имя пользователя не может быть пустым");
+        }
         this.name = name;
     }
 
@@ -15,6 +19,7 @@ public abstract class Product implements Searchable {
 
 
     public abstract double getPrice();
+
     public abstract boolean IsSpecial();
 
     @Override
