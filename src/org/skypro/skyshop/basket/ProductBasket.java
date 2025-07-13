@@ -2,8 +2,12 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ProductBasket {
-    private Product[] products;
+    private List<Product> products;
     int counter;
 
     public int getCounter() {
@@ -11,31 +15,25 @@ public class ProductBasket {
     }
 
     public ProductBasket() {
-        this.products = new Product[5];
+        this.products = new LinkedList<>();
     }
 
     public void addProduct(Product product) {
-        if (counter >= 5) {
-            System.out.println("Невозможно добавить продукт");
-        } else {
-            products[counter] = product;
-            counter++;
-        }
+           products.add(product);
     }
 
     public double countBasketCost() {
         double basketCost = 0;
-        for (int i = 0; i < counter; ++i) {
-            basketCost = +basketCost + products[i].getPrice();
+        for (Product basketProduct: products) {
+            basketCost = +basketCost + basketProduct.getPrice();
         }
         return basketCost;
     }
 
     public double countSpecialProducts() {
         int counterSpecialProducts = 0;
-        for (int i = 0; i < counter; ++i) {
-            Product product = products[i];
-            if (products[i].IsSpecial()) {
+        for (Product basketProduct: products) {
+            if (basketProduct.IsSpecial()) {
                 counterSpecialProducts++;
             }
         }
@@ -44,12 +42,12 @@ public class ProductBasket {
     }
 
     public void printBasket() {
-        if (counter == 0) {
+        System.out.println("Содержание корзины:");
+        if (products.isEmpty()) {
             System.out.println("в корзине пусто");
         }
-        for (int i = 0; i < counter; ++i) {
-            Product product = products[i];
-            System.out.println(products[i]);
+        for (Product basketProduct: products) {
+            System.out.println(basketProduct);
         }
         double totalCost = countBasketCost();
         System.out.println("Итого: " + totalCost);
@@ -58,9 +56,8 @@ public class ProductBasket {
     }
 
     public boolean checkProductInBasket(String nameProduct) {
-        for (int i = 0; i < counter; ++i) {
-            Product product = products[i];
-            if (product.getName().equals(nameProduct)) {
+        for (Product basketProduct: products) {
+            if (basketProduct.getName().equals(nameProduct)) {
                 return true;
             }
         }
@@ -68,9 +65,23 @@ public class ProductBasket {
     }
 
     public void cleanBasket() {
-        for (int i = 0; i < counter; ++i) {
-            products[i] = null;
-            counter = 0;
+            products.clear();
+    }
+    public void  removeByMame(String nameProduct) {
+        List<Product> deleteProducts= new LinkedList<> ();
+        Iterator<Product> iterator = products.iterator();
+        while (iterator.hasNext()) {
+            Product basketProduct = iterator.next();
+            if (basketProduct.getName().contains(nameProduct)) {
+                deleteProducts.add(basketProduct);
+                iterator.remove();
+            }
+            }
+        if (deleteProducts.isEmpty()){
+            System.out.println("Список удаленных продуктов пуст");
+        }
+        else {
+            System.out.println(deleteProducts);
         }
     }
 }

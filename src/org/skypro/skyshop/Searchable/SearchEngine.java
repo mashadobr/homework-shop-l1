@@ -2,47 +2,41 @@ package org.skypro.skyshop.Searchable;
 
 import org.skypro.skyshop.exception.BestResultNotFound;
 
-public class SearchEngine {
-    int size;
-    private Searchable[] searchables;
-    private int currentIndex = 0;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
-    public SearchEngine(int size) {
-        this.size = size;
-        searchables = new Searchable[size];
+public class SearchEngine {
+    private List<Searchable> searchables;
+
+
+    public SearchEngine() {
+        this.searchables = new LinkedList<>();
     }
 
-    public Searchable[] search(String text) {
-        Searchable[] resultSearch = new Searchable[5];
-        int counter = 0;
+    public List<Searchable> search(String text) {
+        List <Searchable> resultSearch =  new LinkedList<>() ;
         for (Searchable searchable : searchables) {
-            if (counter == 5) {
-                break;
-            }
             if (searchable.getSearchTerm().contains(text)) {
-                resultSearch[counter] = searchable;
-                counter++;
+                resultSearch.add(searchable);
             }
         }
         return resultSearch;
     }
 
     public void addSearchable(Searchable searchable) {
-        if (currentIndex >= size) {
-            System.out.println("Невозможно добавить объект");
-        } else {
-            searchables[currentIndex] = searchable;
-            currentIndex++;
+            searchables.add(searchable);
         }
-    }
+
 
     public void pintSearchables() {
-        for (Searchable searchable : searchables) {
+        System.out.println("Список объектов:");
+        for (Searchable searchable: searchables) {
             System.out.println(searchable.getStringRepresentation());
         }
     }
 
-    public void printResult(Searchable[] resultSearcheble) {
+    public void printResult(List<Searchable> resultSearcheble) {
         System.out.println("Результаты поиска");
         for (Searchable result : resultSearcheble) {
             if (result == null) {
