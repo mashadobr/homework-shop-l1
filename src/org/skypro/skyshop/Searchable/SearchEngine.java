@@ -1,5 +1,7 @@
 package org.skypro.skyshop.Searchable;
 
+import org.skypro.skyshop.exception.BestResultNotFound;
+
 public class SearchEngine {
     int size;
     private Searchable[] searchables;

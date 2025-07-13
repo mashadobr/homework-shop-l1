@@ -1,6 +1,6 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.Searchable.BestResultNotFound;
+import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.Searchable.SearchEngine;
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.product.DiscountedProduct;
