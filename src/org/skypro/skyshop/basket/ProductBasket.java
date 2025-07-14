@@ -8,31 +8,26 @@ import java.util.List;
 
 public class ProductBasket {
     private List<Product> products;
-    int counter;
-
-    public int getCounter() {
-        return counter;
-    }
 
     public ProductBasket() {
         this.products = new LinkedList<>();
     }
 
     public void addProduct(Product product) {
-           products.add(product);
+        products.add(product);
     }
 
     public double countBasketCost() {
         double basketCost = 0;
-        for (Product basketProduct: products) {
-            basketCost = +basketCost + basketProduct.getPrice();
+        for (Product basketProduct : products) {
+            basketCost = basketCost + basketProduct.getPrice();
         }
         return basketCost;
     }
 
     public double countSpecialProducts() {
         int counterSpecialProducts = 0;
-        for (Product basketProduct: products) {
+        for (Product basketProduct : products) {
             if (basketProduct.IsSpecial()) {
                 counterSpecialProducts++;
             }
@@ -46,7 +41,7 @@ public class ProductBasket {
         if (products.isEmpty()) {
             System.out.println("в корзине пусто");
         }
-        for (Product basketProduct: products) {
+        for (Product basketProduct : products) {
             System.out.println(basketProduct);
         }
         double totalCost = countBasketCost();
@@ -56,7 +51,7 @@ public class ProductBasket {
     }
 
     public boolean checkProductInBasket(String nameProduct) {
-        for (Product basketProduct: products) {
+        for (Product basketProduct : products) {
             if (basketProduct.getName().equals(nameProduct)) {
                 return true;
             }
@@ -65,10 +60,11 @@ public class ProductBasket {
     }
 
     public void cleanBasket() {
-            products.clear();
+        products.clear();
     }
-    public void  removeByMame(String nameProduct) {
-        List<Product> deleteProducts= new LinkedList<> ();
+
+    public List<Product> removeByMame(String nameProduct) {
+        List<Product> deleteProducts = new LinkedList<>();
         Iterator<Product> iterator = products.iterator();
         while (iterator.hasNext()) {
             Product basketProduct = iterator.next();
@@ -76,15 +72,14 @@ public class ProductBasket {
                 deleteProducts.add(basketProduct);
                 iterator.remove();
             }
-            }
-        if (deleteProducts.isEmpty()){
+        }
+        if (deleteProducts.isEmpty()) {
             System.out.println("Список удаленных продуктов пуст");
         }
-        else {
-            System.out.println(deleteProducts);
-        }
+        return deleteProducts;
     }
 }
+
 
 
 

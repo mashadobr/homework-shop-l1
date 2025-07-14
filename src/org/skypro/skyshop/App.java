@@ -30,9 +30,9 @@ public class App {
         basket1.addProduct(product6);
         //Удаление продкукта из корзины по назаванию
         System.out.println("Test method remove by name");
-        basket1.removeByMame("яйцо");
+        System.out.println(basket1.removeByMame("яйцо"));
         basket1.printBasket();
-        basket1.removeByMame("манго");
+        System.out.println(basket1.removeByMame("манго"));
         basket1.printBasket();
         //Создание списка для поиска
         SearchEngine test = new SearchEngine();
@@ -42,13 +42,11 @@ public class App {
         test.addSearchable(product3);
         test.addSearchable(product4);
         test.addSearchable(product5);
-        //Создание статей и добавлние в список
+        //Создание статей и добавление в список
         Article articleCoffe = new Article("кофе молотый", "бодрит с утра");
         Article articleEggs = new Article("яйцо", "продукт подходит для завтрака");
         test.addSearchable(articleCoffe);
         test.addSearchable(articleEggs);
-        //Распечатываем список
-        test.pintSearchables();
         //Тестируем поиск по имени
         String search1 = "кофе";
         List<Searchable> resultSearcheble1 = test.search(search1);
