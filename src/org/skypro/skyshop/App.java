@@ -30,9 +30,11 @@ public class App {
         basket1.addProduct(product6);
         //Удаление продкукта из корзины по назаванию
         System.out.println("Test method remove by name");
-        System.out.println(basket1.removeByMame("яйцо"));
+        List<Product> delitedProducts1 = basket1.removeByMame("яйцо");
+        printDeletedProducts(delitedProducts1);
         basket1.printBasket();
-        System.out.println(basket1.removeByMame("манго"));
+        List<Product> delitedProducts2 = basket1.removeByMame("манго");
+        printDeletedProducts(delitedProducts2);
         basket1.printBasket();
         //Создание списка для поиска
         SearchEngine test = new SearchEngine();
@@ -50,10 +52,10 @@ public class App {
         //Тестируем поиск по имени
         String search1 = "кофе";
         List<Searchable> resultSearcheble1 = test.search(search1);
-        test.printResult(resultSearcheble1);
+        System.out.println(resultSearcheble1);
         search1 = "яйцо";
         List<Searchable> resultSearcheble2 = test.search(search1);
-        test.printResult(resultSearcheble2);
+        System.out.println(resultSearcheble2);
 
         Article articleCream = new Article("Увлажняющий крем",
                 "Крем хорошо увлажняет кожу, что делает ее увлаженной.");
@@ -78,6 +80,14 @@ public class App {
             System.out.println("Результат для " + search1 + ": " + (testForSearch.getBestResult(search1)));
         } catch (BestResultNotFound e) {
             System.out.println("для " + search1 + " на нашлось подходяшей статьи");
+        }
+    }
+
+    private static void printDeletedProducts(List<Product> deletedProducts) {
+        if (deletedProducts.isEmpty()){
+            System.out.println("List is empty");
+        } else {
+            System.out.println(deletedProducts);
         }
     }
 }

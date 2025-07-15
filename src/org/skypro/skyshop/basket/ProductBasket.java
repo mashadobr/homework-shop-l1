@@ -73,9 +73,6 @@ public class ProductBasket {
                 iterator.remove();
             }
         }
-        if (deleteProducts.isEmpty()) {
-            System.out.println("Список удаленных продуктов пуст");
-        }
         return deleteProducts;
     }
 }

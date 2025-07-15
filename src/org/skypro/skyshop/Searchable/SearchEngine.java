@@ -27,17 +27,6 @@ public class SearchEngine {
         searchables.add(searchable);
     }
 
-    public void printResult(List<Searchable> resultSearcheble) {
-        System.out.println("Результаты поиска");
-        for (Searchable result : resultSearcheble) {
-            if (result == null) {
-                break;
-            } else {
-                System.out.println(result.getStringRepresentation());
-            }
-        }
-    }
-
     public int getNumberMatches(String searchWord, String str) {
 
         int numb = 0;
