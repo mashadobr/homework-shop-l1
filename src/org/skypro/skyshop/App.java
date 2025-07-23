@@ -11,6 +11,7 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws BestResultNotFound {
@@ -24,13 +25,15 @@ public class App {
         ProductBasket basket1 = new ProductBasket();
         basket1.addProduct(product1);
         basket1.addProduct(product2);
+        basket1.addProduct(product2);
         basket1.addProduct(product3);
         basket1.addProduct(product4);
         basket1.addProduct(product5);
         basket1.addProduct(product6);
+        basket1.addProduct(product6);
         //Удаление продкукта из корзины по назаванию
         System.out.println("Test method remove by name");
-        List<Product> delitedProducts1 = basket1.removeByMame("яйцо");
+        List<Product> delitedProducts1 = basket1.removeByMame("хлеб");
         printDeletedProducts(delitedProducts1);
         basket1.printBasket();
         List<Product> delitedProducts2 = basket1.removeByMame("манго");
@@ -51,10 +54,10 @@ public class App {
         test.addSearchable(articleEggs);
         //Тестируем поиск по имени
         String search1 = "кофе";
-        List<Searchable> resultSearcheble1 = test.search(search1);
+        Map<String, Searchable> resultSearcheble1 = test.search(search1);
         System.out.println(resultSearcheble1);
         search1 = "яйцо";
-        List<Searchable> resultSearcheble2 = test.search(search1);
+        Map<String, Searchable> resultSearcheble2 = test.search(search1);
         System.out.println(resultSearcheble2);
 
         Article articleCream = new Article("Увлажняющий крем",
@@ -84,7 +87,7 @@ public class App {
     }
 
     private static void printDeletedProducts(List<Product> deletedProducts) {
-        if (deletedProducts.isEmpty()){
+        if (deletedProducts.isEmpty()) {
             System.out.println("List is empty");
         } else {
             System.out.println(deletedProducts);
