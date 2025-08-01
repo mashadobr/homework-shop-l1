@@ -27,7 +27,7 @@ public class Article implements Searchable {
 
     @Override
     public String getSearchTerm() {
-        return toString();
+        return titleArticle;
     }
 
 
@@ -35,4 +35,10 @@ public class Article implements Searchable {
     public String getContentType() {
         return "ARTICLE";
     }
+
+    @Override
+    public String getStringRepresentation() {
+        return "имя объекта " + titleArticle + ": " + contentArticle + ", тип объекта: " + getContentType();
+    }
 }
+
