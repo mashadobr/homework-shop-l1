@@ -64,7 +64,7 @@ public class ProductBasket {
         if (basket.containsKey(nameProduct)) {
             return basket.remove(nameProduct);
         } else {
-            return new LinkedList<>();
+            return Collections.emptyList();
         }
     }
 
