@@ -15,26 +15,21 @@ public class ProductBasket {
         basket.computeIfAbsent(product.getName(), k -> new LinkedList<>()).add(product);
     }
 
+
     public double countBasketCost() {
-        double basketCost = 0;
-        for (Map.Entry<String, List<Product>> entry : basket.entrySet()) {
-            for (Product product : entry.getValue()) {
-                basketCost = basketCost + product.getPrice();
-            }
-        }
-        return basketCost;
+       return  basket.values()
+                .stream()
+                .flatMap(Collection::stream)
+                .mapToDouble(Product ::getPrice)
+                .sum();
     }
 
-    public double countSpecialProducts() {
-        int counterSpecialProducts = 0;
-        for (Map.Entry<String, List<Product>> entry : basket.entrySet()) {
-            for (Product product : entry.getValue()) {
-                if (product.IsSpecial()) {
-                    counterSpecialProducts++;
-                }
-            }
-        }
-        return counterSpecialProducts;
+    public long countSpecialProducts() {
+        return basket.values()
+                .stream()
+                .flatMap(Collection::stream)
+                .filter(Product::IsSpecial)
+                .count();
     }
 
     public void printBasket() {
@@ -42,15 +37,14 @@ public class ProductBasket {
         if (basket.isEmpty()) {
             System.out.println("в корзине пусто");
         }
-        for (Map.Entry<String, List<Product>> entry : basket.entrySet()) {
-            for (Product product : entry.getValue())
-                System.out.println(product);
-        }
-        double totalCost = countBasketCost();
-        System.out.println("Итого: " + totalCost);
+        basket.values()
+                .stream()
+                .flatMap(Collection::stream)
+                .forEach(System.out:: println);
+        System.out.println("Итого: " + countBasketCost());
         System.out.println("Специальных товаров: " + countSpecialProducts());
-
     }
+
 
     public boolean checkProductInBasket(String nameProduct) {
         return basket.containsKey(nameProduct);

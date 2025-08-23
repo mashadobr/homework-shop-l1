@@ -5,6 +5,8 @@ import org.skypro.skyshop.exception.BestResultNotFound;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class SearchEngine {
     private Set<Searchable> searchables;
@@ -15,13 +17,9 @@ public class SearchEngine {
     }
 
     public Set<Searchable> search(String text) {
-        Set<Searchable> resultSearch = new TreeSet<>(new ReverseLengthComparator());
-        for (Searchable searchable : searchables) {
-            if (searchable.getSearchTerm().contains(text)) {
-                resultSearch.add(searchable);
-            }
-        }
-        return resultSearch;
+        return searchables.stream()
+                .filter(i -> i.getSearchTerm().contains(text))
+                .collect(Collectors.toCollection(()-> new TreeSet<>(new ReverseLengthComparator())));
     }
 
 
