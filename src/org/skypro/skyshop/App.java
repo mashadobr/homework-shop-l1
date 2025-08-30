@@ -3,6 +3,7 @@ package org.skypro.skyshop;
 import org.skypro.skyshop.Searchable.SearchEngine;
 import org.skypro.skyshop.Searchable.Searchable;
 import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
@@ -20,6 +21,18 @@ public class App {
         Product product4 = new FixPriceProduct("кофе молотый");
         Product product5 = new DiscountedProduct("яйцо 20 шт", 180, 10);
         Product product6 = new SimpleProduct("хлеб", 55.0);
+
+        ProductBasket basket1 = new ProductBasket();
+        basket1.addProduct(product1);
+        basket1.addProduct(product2);
+        basket1.addProduct(product2);
+        basket1.addProduct(product3);
+        basket1.addProduct(product4);
+        basket1.addProduct(product5);
+        basket1.addProduct(product6);
+        basket1.addProduct(product6);
+        basket1.printBasket();
+
 
         //Create set for search
         SearchEngine test = new SearchEngine();
